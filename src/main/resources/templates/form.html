@@ -12,6 +12,26 @@
 <form th:action="@{/form}" method="post" th:object="${usuario}">
 
     <div>
+        <label for="nombre">Username:</label>
+        <div>
+            <input type="text" name="nombre" id="nombre"
+                   th:field="*{nombre}">
+        </div>
+        <div th:if="${#fields.hasErrors('nombre')}"
+             th:errors="*{nombre}"></div>
+    </div>
+
+    <div>
+        <label for="apellido">Username:</label>
+        <div>
+            <input type="text" name="apellido" id="apellido"
+                   th:field="*{apellido}">
+        </div>
+        <div th:if="${#fields.hasErrors('apellido')}"
+             th:errors="*{apellido}"></div>
+    </div>
+
+    <div>
         <label for="username">Username:</label>
         <div>
             <input type="text" name="username" id="username"

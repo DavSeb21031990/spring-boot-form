@@ -13,8 +13,16 @@ import javax.validation.constraints.NotEmpty;
 @Builder
 public class Usuario {
 
+    private String identificador;
+    @NotEmpty
+    private String nombre;
+    @NotEmpty
+    private String apellido;
+    @NotEmpty
     private String username;
+    @NotEmpty
     private String password;
+    @NotEmpty
     private String email;
 
 }
