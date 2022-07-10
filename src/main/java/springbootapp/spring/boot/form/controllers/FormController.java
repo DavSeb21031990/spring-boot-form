@@ -20,12 +20,12 @@ public class FormController {
     public String formModel(Model model){
         Usuario usuario = new Usuario();
         model.addAttribute("titulo", "Formulario Usuarios");
-        model.addAttribute("user", usuario);
+        model.addAttribute("usuario", usuario);
         return "form";
     }
 
     @PostMapping("/form")
-    public String procesar(@Valid @ModelAttribute("user") Usuario usuario, BindingResult result, Model model){
+    public String procesar(@Valid Usuario usuario, BindingResult result, Model model){
 
         if(result.hasErrors()){
             Map<String, String> errores = new HashMap<>();

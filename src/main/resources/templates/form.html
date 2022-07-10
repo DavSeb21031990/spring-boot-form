@@ -9,13 +9,13 @@
 
 <h3 th:text="${titulo}"></h3>
 
-<form th:action="@{/form}" method="post">
+<form th:action="@{/form}" method="post" th:object="${usuario}">
 
     <div>
         <label for="username">Username:</label>
         <div>
             <input type="text" name="username" id="username"
-                   th:value="${user.username}">
+                   th:field="*{username}">
         </div>
         <div th:if="${error != null && error.containsKey('username')}"
              th:text="${error.username}"></div>
@@ -34,7 +34,7 @@
         <label for="email">Email:</label>
         <div>
             <input type="email" name="email" id="email"
-            th:value="${user.email}">
+            th:field="*{email}">
         </div>
         <div th:if="${error != null && error.containsKey('email')}"
              th:text="${error.email}"></div>
