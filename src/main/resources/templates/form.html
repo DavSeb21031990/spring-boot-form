@@ -17,8 +17,8 @@
             <input type="text" name="username" id="username"
                    th:field="*{username}">
         </div>
-        <div th:if="${error != null && error.containsKey('username')}"
-             th:text="${error.username}"></div>
+        <div th:if="${#fields.hasErrors('username')}"
+             th:errors="*{username}"></div>
     </div>
 
     <div>
@@ -26,8 +26,8 @@
         <div>
             <input type="password" name="password" id="password">
         </div>
-        <div th:if="${error != null && error.containsKey('password')}"
-             th:text="${error.password}"></div>
+        <div th:if="${#fields.hasErrors('password')}"
+             th:errors="*{password}"></div>
     </div>
 
     <div>
@@ -36,8 +36,8 @@
             <input type="email" name="email" id="email"
             th:field="*{email}">
         </div>
-        <div th:if="${error != null && error.containsKey('email')}"
-             th:text="${error.email}"></div>
+        <div th:if="${#fields.hasErrors('email')}"
+             th:errors="*{email}"></div>
     </div>
 
     <div>
