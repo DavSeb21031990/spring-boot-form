@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import springbootapp.spring.boot.form.validation.IdentificadorRegex;
 
 import javax.validation.constraints.*;
 
@@ -14,6 +15,7 @@ import javax.validation.constraints.*;
 public class Usuario {
 
     //@Pattern(regexp = "[0-9]{2}[.][0-9]{3}[.][0-9]{3}[.][A-Z]")
+    @IdentificadorRegex
     private String identificador;
 
     //@NotEmpty(message = "El nombre no puede ser vacio")
