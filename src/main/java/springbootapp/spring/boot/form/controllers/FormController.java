@@ -1,6 +1,7 @@
 package springbootapp.spring.boot.form.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -10,10 +11,13 @@ import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
+import springbootapp.spring.boot.form.editors.NombreMayusculaEditor;
 import springbootapp.spring.boot.form.models.domain.Usuario;
 import springbootapp.spring.boot.form.validation.UsuarioValidador;
 
 import javax.validation.Valid;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 @Controller
 @SessionAttributes("usuario")
@@ -24,7 +28,18 @@ public class FormController {
 
     @InitBinder
     public void initBinder(WebDataBinder webDataBinder){
+
         webDataBinder.addValidators(usuarioValidador);
+
+        //Siempre usar con guiones cuando se usa en formulario html5
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        dateFormat.setLenient(false);
+        webDataBinder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, false));
+        //Se aplica a un campo especifico
+        //webDataBinder.registerCustomEditor(Date.class, "fechaNacimiento" , new CustomDateEditor(dateFormat, false));
+        //webDataBinder.registerCustomEditor(String.class, new NombreMayusculaEditor());
+        webDataBinder.registerCustomEditor(String.class, "Nombre", new NombreMayusculaEditor());
+        webDataBinder.registerCustomEditor(String.class, "Apellido", new NombreMayusculaEditor());
     }
 
     @GetMapping("/form")
