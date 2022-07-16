@@ -71,6 +71,16 @@
     </div>
 
     <div>
+        <label for="cuenta">Cuenta:</label>
+        <div>
+            <input type="number" name="cuenta" id="cuenta"
+                   th:field="*{cuenta}">
+        </div>
+        <div th:if="${#fields.hasErrors('cuenta')}"
+             th:errors="*{cuenta}"></div>
+    </div>
+
+    <div>
         <div>
             <input type="submit" value="Send">
         </div>

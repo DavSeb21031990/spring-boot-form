@@ -37,4 +37,13 @@ public class Usuario {
     @Email(message = "Correo con formato incorrecto")
     private String email;
 
+    /*
+    * @NotNull es para objetos
+    * @NotEmpty es para String
+    * */
+    @NotNull
+    @Min(5)
+    @Max(5000)
+    private Integer cuenta;
+
 }
