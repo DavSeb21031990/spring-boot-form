@@ -5,10 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 
 @Data
 @NoArgsConstructor
@@ -25,7 +22,7 @@ public class Usuario {
     @NotEmpty
     private String apellido;
 
-    @NotEmpty
+    @NotBlank
     @Size(min = 3, max = 8)
     private String username;
 
