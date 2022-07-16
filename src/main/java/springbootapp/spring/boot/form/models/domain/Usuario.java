@@ -4,10 +4,12 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 import springbootapp.spring.boot.form.validation.IdentificadorRegex;
 import springbootapp.spring.boot.form.validation.Requerido;
 
 import javax.validation.constraints.*;
+import java.util.Date;
 
 @Data
 @NoArgsConstructor
@@ -45,5 +47,9 @@ public class Usuario {
     @Min(5)
     @Max(5000)
     private Integer cuenta;
+
+    @NotNull
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date fechaNacimiento;
 
 }
