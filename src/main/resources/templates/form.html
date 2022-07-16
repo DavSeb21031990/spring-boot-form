@@ -12,6 +12,16 @@
 <form th:action="@{/form}" method="post" th:object="${usuario}">
 
     <div>
+        <label for="identificador">Username:</label>
+        <div>
+            <input type="text" name="identificador" id="identificador"
+                   th:field="*{identificador}">
+        </div>
+        <div th:if="${#fields.hasErrors('identificador')}"
+             th:errors="*{identificador}"></div>
+    </div>
+
+    <div>
         <label for="nombre">Username:</label>
         <div>
             <input type="text" name="nombre" id="nombre"

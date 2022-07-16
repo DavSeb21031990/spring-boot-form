@@ -1,5 +1,6 @@
 package springbootapp.spring.boot.form.controllers;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -8,12 +9,16 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import springbootapp.spring.boot.form.models.domain.Usuario;
+import springbootapp.spring.boot.form.validation.UsuarioValidador;
 
 import javax.validation.Valid;
 
 @Controller
 @SessionAttributes("usuario")
 public class FormController {
+
+    @Autowired
+    private UsuarioValidador usuarioValidador;
 
     @GetMapping("/form")
     public String formModel(Model model){
@@ -35,6 +40,8 @@ public class FormController {
     public String procesar(@Valid Usuario usuario, BindingResult result,
                            Model model,
                            SessionStatus sessionStatus){
+
+        usuarioValidador.validate(usuario, result);
 
         if(result.hasErrors()){
             return "form";
