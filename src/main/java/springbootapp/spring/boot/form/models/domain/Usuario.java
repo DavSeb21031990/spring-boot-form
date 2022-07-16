@@ -5,6 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import springbootapp.spring.boot.form.validation.IdentificadorRegex;
+import springbootapp.spring.boot.form.validation.Requerido;
 
 import javax.validation.constraints.*;
 
@@ -21,7 +22,8 @@ public class Usuario {
     //@NotEmpty(message = "El nombre no puede ser vacio")
     private String nombre;
 
-    @NotEmpty
+    //@NotEmpty
+    @Requerido
     private String apellido;
 
     @NotBlank
@@ -31,7 +33,7 @@ public class Usuario {
     @NotEmpty
     private String password;
 
-    @NotEmpty
+    @Requerido
     @Email(message = "Correo con formato incorrecto")
     private String email;
 
