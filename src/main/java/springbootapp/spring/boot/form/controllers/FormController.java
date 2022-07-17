@@ -6,28 +6,32 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.InitBinder;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.support.SessionStatus;
+import springbootapp.spring.boot.form.api.CountriesStateCityAPI;
+import springbootapp.spring.boot.form.dto.Pais;
 import springbootapp.spring.boot.form.editors.NombreMayusculaEditor;
 import springbootapp.spring.boot.form.models.domain.Usuario;
 import springbootapp.spring.boot.form.validation.UsuarioValidador;
 
 import javax.validation.Valid;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 @SessionAttributes("usuario")
 public class FormController {
 
     @Autowired
+    private CountriesStateCityAPI countriesStateCityAPI;
+    @Autowired
     private UsuarioValidador usuarioValidador;
 
     @InitBinder
-    public void initBinder(WebDataBinder webDataBinder){
+    public void initBinder(WebDataBinder webDataBinder) {
 
         webDataBinder.addValidators(usuarioValidador);
 
@@ -43,7 +47,7 @@ public class FormController {
     }
 
     @GetMapping("/form")
-    public String formModel(Model model){
+    public String formModel(Model model) {
 
         Usuario usuario = Usuario.builder()
                 .nombre("Johon")
@@ -58,14 +62,26 @@ public class FormController {
 
     }
 
+    @ModelAttribute("paises")
+    public List<String> getPaisList() {
+        try{
+            return countriesStateCityAPI.getTerritory().getPaisList()
+                    .stream()
+                    .map(Pais::getNombre)
+                    .collect(Collectors.toList());
+        }catch (NullPointerException e){
+            return new ArrayList<>();
+        }
+    }
+
     @PostMapping("/form")
     public String procesar(@Valid Usuario usuario, BindingResult result,
                            Model model,
-                           SessionStatus sessionStatus){
+                           SessionStatus sessionStatus) {
 
         //usuarioValidador.validate(usuario, result);
 
-        if(result.hasErrors()){
+        if (result.hasErrors()) {
             return "form";
         }
 

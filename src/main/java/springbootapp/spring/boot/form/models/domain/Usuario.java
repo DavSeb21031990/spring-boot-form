@@ -53,4 +53,7 @@ public class Usuario {
     @Past
     private Date fechaNacimiento;
 
+    @NotEmpty
+    private String pais;
+
 }
