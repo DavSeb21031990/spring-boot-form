@@ -9,8 +9,9 @@ import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.support.SessionStatus;
 import springbootapp.spring.boot.form.api.CountriesStateCityAPI;
-import springbootapp.spring.boot.form.dto.Pais;
+import springbootapp.spring.boot.form.dto.PaisDTO;
 import springbootapp.spring.boot.form.editors.NombreMayusculaEditor;
+import springbootapp.spring.boot.form.models.domain.Pais;
 import springbootapp.spring.boot.form.models.domain.Usuario;
 import springbootapp.spring.boot.form.validation.UsuarioValidador;
 
@@ -19,6 +20,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
 @Controller
@@ -63,11 +65,12 @@ public class FormController {
     }
 
     @ModelAttribute("paises")
-    public List<String> getPaisList() {
+    public List<Pais> getPaisList() {
         try{
-            return countriesStateCityAPI.getTerritory().getPaisList()
+            AtomicInteger id = new AtomicInteger(1);
+            return countriesStateCityAPI.getTerritory().getPaisDTOList()
                     .stream()
-                    .map(Pais::getNombre)
+                    .map(paisDTO -> new Pais(id.getAndIncrement(), paisDTO.getCodigo(), paisDTO.getNombre()))
                     .collect(Collectors.toList());
         }catch (NullPointerException e){
             return new ArrayList<>();

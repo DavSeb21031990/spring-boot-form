@@ -13,18 +13,18 @@ import java.util.stream.Collectors;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Territorio {
+public class TerritorioDTO {
 
-    private List<Pais> paisList;
+    private List<PaisDTO> paisDTOList;
 
-    public Territorio(String json) {
+    public TerritorioDTO(String json) {
         String[] territorioJson = StringUtils.split(json, ",");
         if(territorioJson != null){
-            this.paisList = Arrays.stream(territorioJson)
-                    .map(Pais::new)
+            this.paisDTOList = Arrays.stream(territorioJson)
+                    .map(PaisDTO::new)
                     .collect(Collectors.toList());
         }else{
-            this.paisList = new ArrayList<>();
+            this.paisDTOList = new ArrayList<>();
         }
     }
 
