@@ -11,6 +11,7 @@ import org.springframework.web.bind.support.SessionStatus;
 import springbootapp.spring.boot.form.api.CountriesStateCityAPI;
 import springbootapp.spring.boot.form.dto.PaisDTO;
 import springbootapp.spring.boot.form.editors.NombreMayusculaEditor;
+import springbootapp.spring.boot.form.editors.PaisPropertyEditor;
 import springbootapp.spring.boot.form.models.domain.Pais;
 import springbootapp.spring.boot.form.models.domain.Usuario;
 import springbootapp.spring.boot.form.validation.UsuarioValidador;
@@ -31,6 +32,8 @@ public class FormController {
     private CountriesStateCityAPI countriesStateCityAPI;
     @Autowired
     private UsuarioValidador usuarioValidador;
+    @Autowired
+    private PaisPropertyEditor paisPropertyEditor;
 
     @InitBinder
     public void initBinder(WebDataBinder webDataBinder) {
@@ -46,6 +49,7 @@ public class FormController {
         //webDataBinder.registerCustomEditor(String.class, new NombreMayusculaEditor());
         webDataBinder.registerCustomEditor(String.class, "Nombre", new NombreMayusculaEditor());
         webDataBinder.registerCustomEditor(String.class, "Apellido", new NombreMayusculaEditor());
+        webDataBinder.registerCustomEditor(Pais.class, "pais", paisPropertyEditor);
     }
 
     @GetMapping("/form")

@@ -18,14 +18,10 @@ public class TerritorioDTO {
     private List<PaisDTO> paisDTOList;
 
     public TerritorioDTO(String json) {
-        String[] territorioJson = StringUtils.split(json, ",");
-        if(territorioJson != null){
-            this.paisDTOList = Arrays.stream(territorioJson)
-                    .map(PaisDTO::new)
-                    .collect(Collectors.toList());
-        }else{
-            this.paisDTOList = new ArrayList<>();
-        }
+        String[] territorioJson = json.split(",", -1);
+        this.paisDTOList = Arrays.stream(territorioJson)
+                .map(PaisDTO::new)
+                .collect(Collectors.toList());
     }
 
 }
