@@ -19,6 +19,7 @@ import springbootapp.spring.boot.form.validation.UsuarioValidador;
 import javax.validation.Valid;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -79,6 +80,15 @@ public class FormController {
         }catch (NullPointerException e){
             return new ArrayList<>();
         }
+    }
+
+    @ModelAttribute("listaRolesString")
+    public List<String> getRoles(){
+        return Arrays.asList(
+                "ROLE_ADMIN",
+                "ROLE_USER",
+                "ROLE_MODERATOR"
+                );
     }
 
     @PostMapping("/form")

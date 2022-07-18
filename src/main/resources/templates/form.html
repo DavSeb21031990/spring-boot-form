@@ -24,6 +24,16 @@
     </div>
 
     <div>
+        <label>Roles:</label>
+        <div th:each="role: ${listaRolesString}">
+            <input type="checkbox" th:field="*{roles}" th:value="${role}">
+            <label th:for="${#ids.prev('roles')}" th:text="${role}"></label>
+        </div>
+        <div th:if="${#fields.hasErrors('roles')}"
+             th:errors="*{roles}"></div>
+    </div>
+
+    <div>
         <label for="identificador">Username:</label>
         <div>
             <input type="text" name="identificador" id="identificador"
@@ -76,7 +86,7 @@
         <label for="email">Email:</label>
         <div>
             <input type="email" name="email" id="email"
-            th:field="*{email}">
+                   th:field="*{email}">
         </div>
         <div th:if="${#fields.hasErrors('email')}"
              th:errors="*{email}"></div>

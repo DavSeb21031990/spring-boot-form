@@ -10,6 +10,7 @@ import springbootapp.spring.boot.form.validation.Requerido;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
 import java.util.Date;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -55,5 +56,8 @@ public class Usuario {
 
     @NotNull
     private Pais pais;
+
+    @NotEmpty
+    private List<String> roles;
 
 }
