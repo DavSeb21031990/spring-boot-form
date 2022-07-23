@@ -9,11 +9,12 @@ import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.support.SessionStatus;
 import springbootapp.spring.boot.form.api.CountriesStateCityAPI;
-import springbootapp.spring.boot.form.dto.PaisDTO;
 import springbootapp.spring.boot.form.editors.NombreMayusculaEditor;
 import springbootapp.spring.boot.form.editors.PaisPropertyEditor;
 import springbootapp.spring.boot.form.models.domain.Pais;
+import springbootapp.spring.boot.form.models.domain.Rol;
 import springbootapp.spring.boot.form.models.domain.Usuario;
+import springbootapp.spring.boot.form.services.RolServiceImpl;
 import springbootapp.spring.boot.form.validation.UsuarioValidador;
 
 import javax.validation.Valid;
@@ -35,6 +36,9 @@ public class FormController {
     private UsuarioValidador usuarioValidador;
     @Autowired
     private PaisPropertyEditor paisPropertyEditor;
+
+    @Autowired
+    private RolServiceImpl rolService;
 
     @InitBinder
     public void initBinder(WebDataBinder webDataBinder) {
@@ -83,12 +87,17 @@ public class FormController {
     }
 
     @ModelAttribute("listaRolesString")
-    public List<String> getRoles(){
+    public List<String> getRolesSring(){
         return Arrays.asList(
                 "ROLE_ADMIN",
                 "ROLE_USER",
                 "ROLE_MODERATOR"
                 );
+    }
+
+    @ModelAttribute("listaRoles")
+    public List<Rol> getRoles(){
+        return rolService.listar();
     }
 
     @PostMapping("/form")
