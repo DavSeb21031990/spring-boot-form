@@ -8,9 +8,12 @@
 </head>
 <body>
 
-<h3 th:text="${titulo}"></h3>
+<div class="alert alert-success">
+    <span th:text="'Tiempo Transcurrido: ' + ${tiempoTranscurrido} + ' en milisegundos'"></span>
+</div>
 
 <div class="container">
+    <h3 th:text="${titulo}"></h3>
     <form th:action="@{/form}" method="post" th:object="${usuario}">
 
         <div class="form-group row">
