@@ -15,7 +15,7 @@ public class PaisPropertyEditor extends PropertyEditorSupport {
 
     @Override
     public void setAsText(String text) throws IllegalArgumentException {
-        if(text != null && !text.isBlank()){
+        if(text != null && !text.equals(" ")){
             try {
                 Integer id = Integer.parseInt(text);
                 this.setValue(paisService.obtenerPorId(id));
