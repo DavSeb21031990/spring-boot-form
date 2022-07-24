@@ -60,4 +60,9 @@ public class Usuario {
     @NotNull
     private List<Rol> roles;
 
+    private Boolean habilitar;
+
+    @NotEmpty
+    private String genero;
+
 }

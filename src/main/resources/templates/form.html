@@ -12,6 +12,23 @@
 <form th:action="@{/form}" method="post" th:object="${usuario}">
 
     <div>
+        <label for="habilitar">Habilitar:</label>
+        <div>
+            <input type="checkbox" id="habilitar" th:field="*{habilitar}">
+        </div>
+    </div>
+
+    <div>
+        <label>Genero:</label>
+        <div th:each="genero: ${generos}">
+            <input type="radio" th:field="*{genero}" th:value="genero">
+            <label th:for="${#ids.prev('genero')}" th:text="${genero}"></label>
+        </div>
+        <div th:if="${#fields.hasErrors('genero')}"
+             th:errors="*{genero}"></div>
+    </div>
+
+    <div>
         <label for="pais">Username:</label>
         <div>
             <select id="pais" th:field="*{pais}">

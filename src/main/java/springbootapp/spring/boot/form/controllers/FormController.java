@@ -11,6 +11,7 @@ import org.springframework.web.bind.support.SessionStatus;
 import springbootapp.spring.boot.form.api.CountriesStateCityAPI;
 import springbootapp.spring.boot.form.editors.NombreMayusculaEditor;
 import springbootapp.spring.boot.form.editors.PaisPropertyEditor;
+import springbootapp.spring.boot.form.editors.RolEditor;
 import springbootapp.spring.boot.form.models.domain.Pais;
 import springbootapp.spring.boot.form.models.domain.Rol;
 import springbootapp.spring.boot.form.models.domain.Usuario;
@@ -36,6 +37,8 @@ public class FormController {
     private UsuarioValidador usuarioValidador;
     @Autowired
     private PaisPropertyEditor paisPropertyEditor;
+    @Autowired
+    private RolEditor rolEditor;
 
     @Autowired
     private RolServiceImpl rolService;
@@ -55,6 +58,7 @@ public class FormController {
         webDataBinder.registerCustomEditor(String.class, "Nombre", new NombreMayusculaEditor());
         webDataBinder.registerCustomEditor(String.class, "Apellido", new NombreMayusculaEditor());
         webDataBinder.registerCustomEditor(Pais.class, "pais", paisPropertyEditor);
+        webDataBinder.registerCustomEditor(Rol.class, "roles", rolEditor);
     }
 
     @GetMapping("/form")
@@ -64,6 +68,7 @@ public class FormController {
                 .nombre("Johon")
                 .apellido("Doe")
                 .identificador("123.456.789-K")
+                .habilitar(true)
                 .build();
 
         model.addAttribute("titulo", "Formulario Usuarios");
@@ -84,6 +89,11 @@ public class FormController {
         }catch (NullPointerException e){
             return new ArrayList<>();
         }
+    }
+
+    @ModelAttribute("generos")
+    public List<String> getGeneroList(){
+        return Arrays.asList("Hombre, Mujer");
     }
 
     @ModelAttribute("listaRolesString")
