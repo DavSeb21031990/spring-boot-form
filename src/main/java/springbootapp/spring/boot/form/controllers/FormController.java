@@ -97,7 +97,7 @@ public class FormController {
 
     @ModelAttribute("generos")
     public List<String> getGeneroList(){
-        return Arrays.asList("Hombre, Mujer");
+        return Arrays.asList("Hombre", "Mujer");
     }
 
     @ModelAttribute("listaRolesString")
@@ -128,8 +128,6 @@ public class FormController {
 
         //model.addAttribute("titulo", "Resultado form");
         //model.addAttribute("usuario", usuario);
-
-        sessionStatus.setComplete();
 
         return "redirect:/ver";
 
