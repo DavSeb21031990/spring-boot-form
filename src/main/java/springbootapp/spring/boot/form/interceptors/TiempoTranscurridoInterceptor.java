@@ -19,6 +19,10 @@ public class TiempoTranscurridoInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 
+        if(request.getMethod().equalsIgnoreCase("post")){
+            return true;
+        }
+
         LOGGER.info("TiempoTranscurridoInterceptor: preHandler() entrando ...");
 
         long tiempoInicio = System.currentTimeMillis();
@@ -29,6 +33,7 @@ public class TiempoTranscurridoInterceptor implements HandlerInterceptor {
 
         Thread.sleep(demora);
 
+        //response.sendRedirect(request.getContextPath().concat("/login"));
         return true;
 
     }

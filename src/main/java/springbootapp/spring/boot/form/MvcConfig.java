@@ -19,7 +19,8 @@ public class MvcConfig implements WebMvcConfigurer {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         //Si no se define las rutas se aplica a toddas las rutas
-        registry.addInterceptor(tiempoTranscurridoInterceptor);
+        registry.addInterceptor(tiempoTranscurridoInterceptor)
+                .addPathPatterns("/form/**");
     }
 
 }
