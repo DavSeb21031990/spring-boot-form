@@ -1,5 +1,6 @@
 package springbootapp.spring.boot.form.controllers;
 
+import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
@@ -121,13 +122,29 @@ public class FormController {
         //usuarioValidador.validate(usuario, result);
 
         if (result.hasErrors()) {
+            model.addAttribute("titulo", "Resultado form");
             return "form";
         }
 
-        model.addAttribute("titulo", "Resultado form");
-        model.addAttribute("usuario", usuario);
+        //model.addAttribute("titulo", "Resultado form");
+        //model.addAttribute("usuario", usuario);
 
         sessionStatus.setComplete();
+
+        return "redirect:/ver";
+
+    }
+
+    @GetMapping("/ver")
+    public String ver(@SessionAttribute(name = "usuario", required = false) Usuario usuario, Model model, SessionStatus status){
+
+        if(usuario==null){
+            return "redirect:/form";
+        }
+
+        model.addAttribute("titulo", "Resultado form");
+
+        status.setComplete();
 
         return "resultado";
 
