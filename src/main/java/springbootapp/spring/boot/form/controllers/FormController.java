@@ -69,6 +69,7 @@ public class FormController {
                 .apellido("Doe")
                 .identificador("123.456.789-K")
                 .habilitar(true)
+                .valorSecreto("Algún valor secreto ****")
                 .build();
 
         model.addAttribute("titulo", "Formulario Usuarios");

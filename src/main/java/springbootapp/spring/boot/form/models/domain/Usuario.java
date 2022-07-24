@@ -65,4 +65,6 @@ public class Usuario {
     @NotEmpty
     private String genero;
 
+    private String valorSecreto;
+
 }
