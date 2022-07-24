@@ -70,6 +70,8 @@ public class FormController {
                 .identificador("123.456.789-K")
                 .habilitar(true)
                 .valorSecreto("Algún valor secreto ****")
+                .pais(getPaisList().get(10))
+                .roles(Arrays.asList(new Rol()))
                 .build();
 
         model.addAttribute("titulo", "Formulario Usuarios");

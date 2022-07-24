@@ -5,8 +5,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.validation.constraints.NotNull;
-
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -17,4 +15,8 @@ public class Pais {
     private String codigo;
     private String nombre;
 
+    @Override
+    public String toString() {
+        return this.id.toString();
+    }
 }
